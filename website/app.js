@@ -21,7 +21,7 @@ document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
   // select the input feelings to include in POST
-  const feelingText = document.getElementById('feelings').value;
+  let feelingText = document.getElementById('feelings').value;
   // get the API data
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
     function(newTemperature) {
@@ -46,8 +46,11 @@ function performAction(e) {
 //////////////////////////////////
 // Function to GET Web API Data //
 /////////////////////////////////
-const getWeather = async (baseURL, zip, apiKey) => {
-  const resGet = await fetch(baseURL + zip + ',us&appid=' + apiKey);
+let getWeather;
+
+getWeather = async (baseURL, zip, apiKey) => {
+  let resGet;
+  resGet = await fetch(baseURL + zip + ',us&appid=' + apiKey);
   try {
     const webData = await resGet.json();
     newTemperature = webData.main.temp;
@@ -60,7 +63,9 @@ const getWeather = async (baseURL, zip, apiKey) => {
 //////////////////////////////////
 // Function to GET Project Data //
 //////////////////////////////////
-const retrieveData = async (url = '') => {
+let retrieveData;
+
+retrieveData = async (url = '') => {
   const req = await fetch(url);
   try {
     // Transform into JSON
@@ -76,7 +81,9 @@ const retrieveData = async (url = '') => {
 // Function to POST data  //
 ////////////////////////////
 
-const postData = async (url = '', data = {}) => {
+let postData;
+
+postData = async (url = '', data = {}) => {
   console.log(data);
   const response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -88,7 +95,8 @@ const postData = async (url = '', data = {}) => {
   });
 
   try {
-    const newData = await response.json();
+    let newData;
+    newData = await response.json();
     // console.log(newData);
     return newData;
   } catch (error) {
@@ -100,8 +108,11 @@ const postData = async (url = '', data = {}) => {
 ////////////////
 // Update UI//
 ////////////////
-const updateUI = async () => {
-  const reqPost = await fetch('/all');
+let updateUI;
+
+updateUI = async () => {
+  let reqPost;
+  reqPost = await fetch('/all');
   try {
     const allData = await reqPost.json();
     const mostRecentRecord = allData[allData.length - 1];
