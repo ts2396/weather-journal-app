@@ -40,44 +40,44 @@ function performAction(e) {
 /* Function to GET Web API Data*/
 
 const getWeather = async (baseURL, zip, apiKey) => {
-  let res = await fetch(`${baseURL + zip},&appid=${apiKey}`);
+  const res = await fetch(baseURL + zip + ',&appid=' + apiKey);
   try {
     const webData = await res.json();
     newTemperature = webData.main.temp;
-    return newTemperature;
+    return newTemperature
   } catch (error) {
     console.log("error", error);
   }
 }
 
+/* Function to GET Project Data */
 const retrieveData = async (url = '') => {
   const req = await fetch(url);
   try {
-    // Transform into JSON
     const reqData = await req.json();
     return reqData;
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
     // appropriately handle the error
   }
 };
 
 /* Function to POST data */
 const postData = async (url = '', data = {}) => {
-  const req = await fetch(url, {
+  const response = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json;charset=UTF-8"
     },
     body: JSON.stringify(data)
   });
 
   try {
-    const newData = await req.json();
+    const newData = await response.json();
     return newData;
   } catch (error) {
-    console.log(error);
+    console.log("error", error);
   }
 };
 
