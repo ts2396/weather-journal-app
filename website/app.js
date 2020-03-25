@@ -116,13 +116,10 @@ updateUI = async () => {
   try {
     const allData = await reqPost.json();
     const newLocal = 1;
-    const mostRecentRecord = allData[allData.length - newLocal];
-    document.getElementById('date').innerHTML =
-      'Date: ' + mostRecentRecord.date;
-    document.getElementById('temp').innerHTML =
-      'Temperature: ' + mostRecentRecord.temperature + ' &#8457;';
-    document.getElementById('content').innerHTML =
-      'Feelings: ' + mostRecentRecord.userResponse;
+    const recentRecord = allData[allData.length - newLocal];
+    document.getElementById('date').innerHTML = 'Date: ' + recentRecord.date;
+    document.getElementById('temp').innerHTML = 'Temperature: ' + recentRecord.temperature + ' &#8457;';
+    document.getElementById('content').innerHTML = 'Feelings: ' + recentRecord.userResponse;
   } catch (error) {
     console.log('error', error);
   }
