@@ -63,7 +63,6 @@ const postData = async (url = '', data = {}) => {
 
   const response = await fetch(url, {
     method: 'POST',
-    mode: 'cors',
     credentials: 'same-origin',
     headers: {
       "Content-Type": "application/json;charset=UTF-8",
@@ -91,24 +90,4 @@ const updateAPIData = async () => {
   } catch (error) {
     console.log("error", error)
   }
-}
-
-// GET route
-app.get('/all', sendData);
-
-function sendData(request, response) {
-  response.send(projectData);
-}
-
-// TODO-ROUTES!
-app.post('/add', callBack);
-
-function callBack(req, res) {
-  res.send('POST received');
-}
-
-app.post('/animal', addAnimal);
-
-function addAnimal(req, res) {
-  data.push(req.body);
 }
