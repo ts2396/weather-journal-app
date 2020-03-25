@@ -11,8 +11,7 @@ let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 ////////////////////////////////////////////
 // Personal API Key for OpenWeatherMap API//
 ////////////////////////////////////////////
-const baseURL =
-  'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+const baseURL = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
 ////////////////////////////////////////////////////////////////
@@ -97,12 +96,9 @@ const updatePOST = async () => {
   try {
     const allData = await reqPost.json();
     const mostRecentRecord = allData[allData.length - 1];
-    document.getElementById('date').innerHTML =
-      'Date: ' + mostRecentRecord.date;
-    document.getElementById('temp').innerHTML =
-      'Temperature: ' + mostRecentRecord.temperature + ' &#8457;';
-    document.getElementById('content').innerHTML =
-      'Feelings: ' + mostRecentRecord.userResponse;
+    document.getElementById('date').innerHTML = 'Date: ' + mostRecentRecord.date;
+    document.getElementById('temp').innerHTML = 'Temperature: ' + mostRecentRecord.temperature + ' &#8457;';
+    document.getElementById('content').innerHTML = 'Feelings: ' + mostRecentRecord.userResponse;
   } catch (error) {
     console.log('error', error);
   }
