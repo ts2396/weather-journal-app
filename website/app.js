@@ -91,7 +91,7 @@ const postData = async (url = '', data = {}) => {
 ////////////////
 // Update UI//
 ////////////////
-const updatePOST = async () => {
+const updatePost = async () => {
   const reqPost = await fetch('/all');
   try {
     const allData = await reqPost.json();
