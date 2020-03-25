@@ -11,7 +11,8 @@ let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 ////////////////////////////////////////////
 // Personal API Key for OpenWeatherMap API//
 ////////////////////////////////////////////
-const baseURL = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+const baseURL =
+  'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
 ////////////////////////////////////////////////////////////////
@@ -69,22 +70,26 @@ const retrieveData = async (url = '') => {
 };
 
 ////////////////////////////
-// Function to POST data  ///
+// Function to POST data  //
 ////////////////////////////
 const postData = async (url = '', data = {}) => {
-  const res = await fetch(url, {
-    method: 'POST',
-    credentials: 'same-origin',
+  console.log(data);
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
   });
+
   try {
-    const newData = await res.json();
+    const newData = await response.json();
+    // console.log(newData);
     return newData;
   } catch (error) {
     console.log('error', error);
+    // appropriately handle the error
   }
 };
 
