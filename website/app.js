@@ -25,7 +25,7 @@ function performAction(e) {
   e.preventDefault();
   const feelingText = document.getElementById('feelings').value;
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
-    function (newTemperature) {
+    newTemperature => {
       postData('/add', {
         temperature: newTemperature,
         date: newDate,
