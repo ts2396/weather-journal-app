@@ -40,7 +40,7 @@ function performAction(e) {
 /* Function to GET Web API Data*/
 
 const getWeather = async (baseURL, zip, apiKey) => {
-  let res = await fetch(`${baseURL + zip},us&appid=${apiKey}`);
+  let res = await fetch(`${baseURL + zip},&appid=${apiKey}`);
   try {
     const webData = await res.json();
     newTemperature = webData.main.temp;
