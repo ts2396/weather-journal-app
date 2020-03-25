@@ -22,9 +22,8 @@ const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
-  // select the input feelings to include in POST
-  let feelingText = document.getElementById('feelings').value;
-  // get the API data
+  e.preventDefault();
+  const feelingText = document.getElementById('feelings').value;
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
     function (newTemperature) {
       postData('/add', {
@@ -32,16 +31,17 @@ function performAction(e) {
         date: newDate,
         userAction: feelingText
       });
-      // update UI
       updateUI();
     }
   );
 }
 
-let getWeather = async (baseURL, zip, apiKey) => {
-  let resGet = await fetch(`${baseURL + zip},us&appid=${apiKey}`);
+/* Function to GET Web API Data*/
+
+const getWeather = async (baseURL, zip, apiKey) => {
+  let res = await fetch(`${baseURL + zip},us&appid=${apiKey}`);
   try {
-    const webData = await resGet.json();
+    const webData = await res.json();
     newTemperature = webData.main.temp;
     return newTemperature;
   } catch (error) {
@@ -49,7 +49,7 @@ let getWeather = async (baseURL, zip, apiKey) => {
   }
 }
 
-let retrieveData = async (url = '') => {
+const retrieveData = async (url = '') => {
   const req = await fetch(url);
   try {
     // Transform into JSON
@@ -63,13 +63,17 @@ let retrieveData = async (url = '') => {
 
 /* Function to POST data */
 const postData = async (url = '', data = {}) => {
-  const response = await fetch(url, {
+  const req = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+    body: JSON.stringify({
+      date: data.date,
+      temp: data.temp,
+      content: data.content
+    })
   });
 
   try {
