@@ -11,7 +11,7 @@ let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 ////////////////////////////////////////////
 // Personal API Key for OpenWeatherMap API//
 ////////////////////////////////////////////
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
 ////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ function performAction(e) {
         userResponse: feelText
       });
       // update UI
-      updatePOST();
+      updatePost();
     }
   );
 }
@@ -89,7 +89,7 @@ const postData = async (url = '', data = {}) => {
 };
 
 ////////////////
-// Update POST//
+// Update UI//
 ////////////////
 const updatePOST = async () => {
   const reqPost = await fetch('/all');
