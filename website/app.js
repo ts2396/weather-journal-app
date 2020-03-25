@@ -34,7 +34,7 @@ function performAction(e) {
         userResponse: feelText
       });
       // update UI
-      updatePost();
+      updateUI();
     }
   );
 }
@@ -91,14 +91,17 @@ const postData = async (url = '', data = {}) => {
 ////////////////
 // Update UI//
 ////////////////
-const updatePost = async () => {
+const updateUI = async () => {
   const reqPost = await fetch('/all');
   try {
     const allData = await reqPost.json();
     const mostRecentRecord = allData[allData.length - 1];
-    document.getElementById('date').innerHTML = 'Date: ' + mostRecentRecord.date;
-    document.getElementById('temp').innerHTML = 'Temperature: ' + mostRecentRecord.temperature + ' &#8457;';
-    document.getElementById('content').innerHTML = 'Feelings: ' + mostRecentRecord.userResponse;
+    document.getElementById('date').innerHTML =
+      'Date: ' + mostRecentRecord.date;
+    document.getElementById('temp').innerHTML =
+      'Temperature: ' + mostRecentRecord.temperature + ' &#8457;';
+    document.getElementById('content').innerHTML =
+      'Feelings: ' + mostRecentRecord.userResponse;
   } catch (error) {
     console.log('error', error);
   }
