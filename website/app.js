@@ -26,7 +26,14 @@ function performAction(e) {
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
     function(newTemperature) {
       postData('/add', {
-        temperature: newTemperature,
+        _temperature: newTemperature,
+        get temperature() {
+          return this._temperature;
+        },
+        set temperature(value) {
+          /////////////////////////////////////
+          this._temperature = value;
+        },
         date: newDate,
         userResponse: feelingText
       });
