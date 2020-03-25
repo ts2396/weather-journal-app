@@ -72,6 +72,7 @@ const retrieveData = async (url = '') => {
 ////////////////////////////
 // Function to POST data  //
 ////////////////////////////
+
 const postData = async (url = '', data = {}) => {
   console.log(data);
   const response = await fetch(url, {
