@@ -1,6 +1,6 @@
 body {
   background: #434343;
-  background-image: url('/weather-journal-app/website/images/thunderstorm-1768742_960_720.webp');
+  background-image: url('./images/thunderstorm-1768742_960_720.webp');
   top: 0;
   left: 0;
   background-attachment: fixed;
