@@ -25,11 +25,11 @@ function performAction(e) {
   e.preventDefault();
   const feelingText = document.getElementById('feelings').value;
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
-    newTemperature => {
+    function (newTemperature) {
       postData('/add', {
         temperature: newTemperature,
         date: newDate,
-        userAction: feelingText
+        feelings: feelingText
       });
       updateUI();
     }
@@ -69,11 +69,7 @@ const postData = async (url = '', data = {}) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      date: data.date,
-      temp: data.temp,
-      content: data.content
-    })
+    body: JSON.stringify(data)
   });
 
   try {
@@ -86,17 +82,17 @@ const postData = async (url = '', data = {}) => {
 
 
 let updateUI = async () => {
-  let reqPost;
-  reqPost = await fetch('/all');
+  const reqPost = await fetch('/all');
   try {
     const allData = await reqPost.json();
+    console.log(allData);
     const newLocal = 1;
-    const recentEntry = allData[allData.length - newLocal];
-    document.getElementById('date').innerHTML = 'Date: ' + recentEntry.date;
+    const newEntry = allData[allData.length - newLocal];
+    document.getElementById('date').innerHTML = 'Date: ' + newEntry.date;
     document.getElementById('temp').innerHTML =
-      'Temperature: ' + recentEntry.temperature + ' &#8457;';
+      'Temperature: ' + newEntry.temperature + ' &#8457;';
     document.getElementById('content').innerHTML =
-      'Feelings: ' + recentEntry.userAction;
+      'Feelings: ' + newEntry.feelings;
   } catch (error) {
     console.log("error", error);
   }
