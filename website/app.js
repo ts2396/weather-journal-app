@@ -7,8 +7,7 @@ let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 ////////////////////////////////////////////
 // Personal API Key for OpenWeatherMap API//
 ////////////////////////////////////////////
-const baseURL =
-  'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
 ////////////////////////////////////////////////////////////////
@@ -24,7 +23,7 @@ function performAction(e) {
   let feelingText = document.getElementById('feelings').value;
   // get the API data
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
-    function(newTemperature) {
+    function (newTemperature) {
       postData('/add', {
         _temperature: newTemperature,
         get temperature() {
@@ -50,7 +49,7 @@ let getWeather;
 
 getWeather = async (baseURL, zip, apiKey) => {
   let resGet;
-  resGet = await fetch(baseURL + zip + ',us&appid=' + apiKey);
+  resGet = await fetch(`${baseURL + zip},us&appid=${apiKey}`);
   try {
     const webData = await resGet.json();
     newTemperature = webData.main.temp;
@@ -85,9 +84,8 @@ let postData;
 
 postData = async (url = '', data = {}) => {
   console.log(data);
-  let response;
 
-  response = await fetch(url, {
+  let response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
@@ -117,7 +115,8 @@ updateUI = async () => {
   reqPost = await fetch('/all');
   try {
     const allData = await reqPost.json();
-    const mostRecentRecord = allData[allData.length - 1];
+    const newLocal = 1;
+    const mostRecentRecord = allData[allData.length - newLocal];
     document.getElementById('date').innerHTML =
       'Date: ' + mostRecentRecord.date;
     document.getElementById('temp').innerHTML =
