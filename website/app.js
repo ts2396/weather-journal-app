@@ -28,14 +28,7 @@ function performAction(e) {
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
     function (newTemperature) {
       postData('/add', {
-        _temperature: newTemperature,
-        get temperature() {
-          return this._temperature;
-        },
-        set temperature(value) {
-          /////////////////////////////////////
-          this._temperature = value;
-        },
+        temperature: newTemperature,
         date: newDate,
         userAction: feelingText
       });
@@ -52,9 +45,9 @@ let getWeather = async (baseURL, zip, apiKey) => {
     newTemperature = webData.main.temp;
     return newTemperature;
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
   }
-};
+}
 
 let retrieveData = async (url = '') => {
   const req = await fetch(url);
@@ -80,12 +73,13 @@ const postData = async (url = '', data = {}) => {
   });
 
   try {
-    const newData = await response.json();
+    const newData = await req.json();
     return newData;
   } catch (error) {
-    console.log('error', error);
+    console.log(error);
   }
 };
+
 
 let updateUI = async () => {
   let reqPost;
@@ -100,6 +94,6 @@ let updateUI = async () => {
     document.getElementById('content').innerHTML =
       'Feelings: ' + recentEntry.userAction;
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
   }
 };
