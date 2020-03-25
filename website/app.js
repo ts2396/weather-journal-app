@@ -85,7 +85,9 @@ let postData;
 
 postData = async (url = '', data = {}) => {
   console.log(data);
-  const response = await fetch(url, {
+  let response;
+
+  response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
