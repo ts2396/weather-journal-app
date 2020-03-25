@@ -23,7 +23,7 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
   const feelText = document.getElementById('feelings').value;
   getApiData(baseURL, document.getElementById('zip').value, apiKey)
-    .then(function (tempData) {
+    .then(function (JTempData) {
       postData('/add', {
         temperature: JTempData,
         date: newDate,
@@ -91,4 +91,24 @@ const updateAPIData = async () => {
   } catch (error) {
     console.log("error", error)
   }
+}
+
+// GET route
+app.get('/all', sendData);
+
+function sendData(request, response) {
+  response.send(projectData);
+}
+
+// TODO-ROUTES!
+app.post('/add', callBack);
+
+function callBack(req, res) {
+  res.send('POST received');
+}
+
+app.post('/animal', addAnimal);
+
+function addAnimal(req, res) {
+  data.push(req.body);
 }
