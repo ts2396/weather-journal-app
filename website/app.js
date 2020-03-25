@@ -7,8 +7,11 @@ let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 ////////////////////////////////////////////
 // Personal API Key for OpenWeatherMap API//
 ////////////////////////////////////////////
-const baseURL = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
-const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
+const baseURL =
+  'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+const apiKey = '&appid=ce58fc8133b676ecc82cb35306506d86';
+
+// http://api.openweathermap.org/data/2.5/weather?q=us&APPID=ce58fc8133b676ecc82cb35306506d86
 
 ////////////////////////////////////////////////////////////////
 // Event listener to add function to existing HTML DOM element//
@@ -96,8 +99,10 @@ let updateUI = async () => {
     const newLocal = 1;
     const recentEntry = allData[allData.length - newLocal];
     document.getElementById('date').innerHTML = 'Date: ' + recentEntry.date;
-    document.getElementById('temp').innerHTML = 'Temperature: ' + recentEntry.temperature + ' &#8457;';
-    document.getElementById('content').innerHTML = 'Feelings: ' + recentEntry.userAction;
+    document.getElementById('temp').innerHTML =
+      'Temperature: ' + recentEntry.temperature + ' &#8457;';
+    document.getElementById('content').innerHTML =
+      'Feelings: ' + recentEntry.userAction;
   } catch (error) {
     console.log('error', error);
   }
