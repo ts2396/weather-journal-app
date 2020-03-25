@@ -63,17 +63,16 @@ let retrieveData = async (url = '') => {
     const reqData = await req.json();
     return reqData;
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
     // appropriately handle the error
   }
 };
 
-let postData = async (url = '', data = {}) => {
-
-
-  let response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    credentials: 'same-origin', // include, *same-origin, omit
+/* Function to POST data */
+const postData = async (url = '', data = {}) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -81,13 +80,10 @@ let postData = async (url = '', data = {}) => {
   });
 
   try {
-    let newData;
-    newData = await response.json();
-    // console.log(newData);
+    const newData = await response.json();
     return newData;
   } catch (error) {
-    console.log(error);
-    // appropriately handle the error
+    console.log('error', error);
   }
 };
 
@@ -104,6 +100,6 @@ let updateUI = async () => {
     document.getElementById('content').innerHTML =
       'Feelings: ' + recentEntry.userAction;
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
   }
 };
