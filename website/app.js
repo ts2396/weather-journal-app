@@ -70,7 +70,7 @@ const retrieveData = async (url = '') => {
 };
 
 ////////////////////////////
-// Function to POST data  //
+// Function to POST data  ///
 ////////////////////////////
 const postData = async (url = '', data = {}) => {
   const res = await fetch(url, {
