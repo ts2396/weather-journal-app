@@ -69,7 +69,7 @@ let retrieveData = async (url = '') => {
 };
 
 let postData = async (url = '', data = {}) => {
-  console.log(data);
+
 
   let response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
