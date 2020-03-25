@@ -28,7 +28,7 @@ function performAction(e) {
         date: newDate,
         feelings: feelText
       });
-      updateAPIData();
+      updateUI();
     }
   );
 }
@@ -78,7 +78,7 @@ const postData = async (url = '', data = {}) => {
 };
 
 /* Update UI */
-const updateAPIData = async () => {
+const updateUI = async () => {
   const request = await fetch('/all');
   try {
     const allData = await request.json();
