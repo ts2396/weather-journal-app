@@ -42,14 +42,8 @@ function performAction(e) {
   );
 }
 
-//////////////////////////////////
-// Function to GET Web API Data //
-/////////////////////////////////
-let getWeather;
-
-getWeather = async (baseURL, zip, apiKey) => {
-  let resGet;
-  resGet = await fetch(`${baseURL + zip},us&appid=${apiKey}`);
+let getWeather = async (baseURL, zip, apiKey) => {
+  let resGet = await fetch(`${baseURL + zip},us&appid=${apiKey}`);
   try {
     const webData = await resGet.json();
     newTemperature = webData.main.temp;
@@ -59,12 +53,7 @@ getWeather = async (baseURL, zip, apiKey) => {
   }
 };
 
-//////////////////////////////////
-// Function to GET Project Data //
-//////////////////////////////////
-let retrieveData;
-
-retrieveData = async (url = '') => {
+let retrieveData = async (url = '') => {
   const req = await fetch(url);
   try {
     // Transform into JSON
@@ -76,13 +65,7 @@ retrieveData = async (url = '') => {
   }
 };
 
-////////////////////////////
-// Function to POST data  //
-////////////////////////////
-
-let postData;
-
-postData = async (url = '', data = {}) => {
+let postData = async (url = '', data = {}) => {
   console.log(data);
 
   let response = await fetch(url, {
@@ -105,12 +88,7 @@ postData = async (url = '', data = {}) => {
   }
 };
 
-////////////////
-// Update UI//
-////////////////
-let updateUI;
-
-updateUI = async () => {
+let updateUI = async () => {
   let reqPost;
   reqPost = await fetch('/all');
   try {
