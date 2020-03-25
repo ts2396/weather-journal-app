@@ -25,17 +25,17 @@ document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
   // select the input feelings to include in POST
-  const feelText = document.getElementById('feelings').value;
+  const feelingText = document.getElementById('feelings').value;
   // get the API data
   getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
     function(newTemperature) {
       postData('/add', {
         temperature: newTemperature,
         date: newDate,
-        userResponse: feelText
+        userResponse: feelingText
       });
       // update UI
-      updatePOST();
+      updateUI();
     }
   );
 }
@@ -90,9 +90,9 @@ const postData = async (url = '', data = {}) => {
 };
 
 ////////////////
-// Update POST//
+// Update UI//
 ////////////////
-const updatePOST = async () => {
+const updateUI = async () => {
   const reqPost = await fetch('/all');
   try {
     const allData = await reqPost.json();
