@@ -34,7 +34,7 @@ function performAction(e) {
           this._temperature = value;
         },
         date: newDate,
-        userResponse: feelingText
+        userAction: feelingText
       });
       // update UI
       updateUI();
@@ -116,10 +116,10 @@ updateUI = async () => {
   try {
     const allData = await reqPost.json();
     const newLocal = 1;
-    const recentRecord = allData[allData.length - newLocal];
-    document.getElementById('date').innerHTML = 'Date: ' + recentRecord.date;
-    document.getElementById('temp').innerHTML = 'Temperature: ' + recentRecord.temperature + ' &#8457;';
-    document.getElementById('content').innerHTML = 'Feelings: ' + recentRecord.userResponse;
+    const recentEntry = allData[allData.length - newLocal];
+    document.getElementById('date').innerHTML = 'Date: ' + recentEntry.date;
+    document.getElementById('temp').innerHTML = 'Temperature: ' + recentEntry.temperature + ' &#8457;';
+    document.getElementById('content').innerHTML = 'Feelings: ' + recentEntry.userAction;
   } catch (error) {
     console.log('error', error);
   }
