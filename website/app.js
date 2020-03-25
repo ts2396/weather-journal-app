@@ -20,9 +20,9 @@ const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
 /* Function called by event listener */
 
-document.getElementById('generate').addEventListener('click', goZip);
+document.getElementById('generate').addEventListener('click', performAction);
 
-function goZip(e) {
+function performAction(e) {
   // select the input feelings to include in POST
   const feelText = document.getElementById('feelings').value;
   // get the API data
