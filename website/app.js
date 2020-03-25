@@ -1,7 +1,3 @@
-//////////////////////
-// Global Variables //
-//////////////////////
-
 ////////////////////////////////////////////////////
 // Create a new date instance dynamically with JS //
 ////////////////////////////////////////////////////
@@ -43,8 +39,8 @@ function performAction(e) {
 //////////////////////////////////
 // Function to GET Web API Data //
 /////////////////////////////////
-const getWeather = async (baseURL, zip, key) => {
-  const resGet = await fetch(baseURL + zip + ',us&appid=' + key);
+const getWeather = async (baseURL, zip, apiKey) => {
+  const resGet = await fetch(baseURL + zip + ',us&appid=' + apiKey);
   try {
     const webData = await resGet.json();
     newTemperature = webData.main.temp;
