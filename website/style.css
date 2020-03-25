@@ -16,7 +16,7 @@ body {
 
 #app {
   display: grid;
-  grid-auto-rows: minmax(150px, auto);
+  grid-auto-rows: minmax(75px, auto);
   /* grid-template-columns:  */
   height: 100vh;
   color: #ffffff;
@@ -28,8 +28,33 @@ body {
 
 .holder {
   display: grid;
-  grid-auto-rows: minmax(100px, auto);
+  margin: 5px;
   justify-content: center;
+}
+
+div {
+  /* NO USER HIGHLIGHT CONTENT */
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif, Arial, Helvetica;
+  font-size: 5vw;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: 'Oswald', sans-serif, Arial, Helvetica;
+  font-size: 4vw;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: 'Oswald', sans-serif, Arial, Helvetica;
+  font-size: 3vw;
+  text-transform: uppercase;
 }
 
 #entry {
@@ -51,7 +76,6 @@ body {
   border: 1px solid #ffffff;
   color: rgb(0, 0, 0);
   text-align: center;
-  width: 100%;
 }
 
 #date {
@@ -64,15 +88,26 @@ body {
   font-size: 18px;
 }
 
+#zip {
+  font-family: 'Oswald', sans-serif, Arial, Helvetica;
+  font-size: 18px;
+  width: 150px;
+}
+
 #content {
   font-family: 'Oswald', sans-serif, Arial, Helvetica;
   font-size: 18px;
 }
 
+.title {
+  font-family: 'Oswald', sans-serif, Arial, Helvetica;
+  letter-spacing: 5px;
+}
+
 .headline {
   font-family: 'Oswald', sans-serif, Arial, Helvetica;
   font-size: 5vw;
-  letter-spacing: 25px;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: rgb(0, 0, 0);
   text-align: center;

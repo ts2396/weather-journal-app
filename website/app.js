@@ -1,94 +1,108 @@
-/* Global Variables */
+//////////////////////
+// Global Variables //
+//////////////////////
 
-// Create a new date instance dynamically with JS
+////////////////////////////////////////////////////
+// Create a new date instance dynamically with JS //
+////////////////////////////////////////////////////
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 
-// Personal API Key for OpenWeatherMap API
+////////////////////////////////////////////
+// Personal API Key for OpenWeatherMap API//
+////////////////////////////////////////////
 const baseURL =
   'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
-const addDataURL = '/add';
-const allDataURL = '/all';
-
-// Event listener to add function to existing HTML DOM element
+////////////////////////////////////////////////////////////////
+// Event listener to add function to existing HTML DOM element//
+////////////////////////////////////////////////////////////////
 
 /* Function called by event listener */
 
-document.getElementById('generate').addEventListener('click', doZip);
+document.getElementById('generate').addEventListener('click', goZip);
 
-function doZip(e) {
+function goZip(e) {
   // select the input feelings to include in POST
   const feelText = document.getElementById('feelings').value;
-
   // get the API data
-  getApiData(baseURL, document.getElementById('zip').value, apiKey).then(
-    function (zipTemp) {
+  getWeather(baseURL, document.getElementById('zip').value, apiKey).then(
+    function(zipTemp) {
       postData('/add', {
-        temperature: APItemperature,
+        temperature: newTemperature,
         date: newDate,
         userResponse: feelText
       });
       // update UI
-      updateUI();
+      updatePOST();
     }
   );
 }
 
-/* Function to GET Web API Data*/
-const getApiData = async (baseURL, zip, key) => {
-  const response = await fetch(baseURL + zip + ',us&appid=' + key);
+//////////////////////////////////
+// Function to GET Web API Data //
+/////////////////////////////////
+const getWeather = async (baseURL, zip, key) => {
+  const resGet = await fetch(baseURL + zip + ',us&appid=' + key);
   try {
-    const webData = await response.json();
-    APItemperature = webData.main.temp;
-    return APItemperature;
+    const webData = await resGet.json();
+    newTemperature = webData.main.temp;
+    return newTemperature;
   } catch (error) {
     console.log('error', error);
   }
 };
 
-/* Function to GET Project Data */
+//////////////////////////////////
+// Function to GET Project Data //
+//////////////////////////////////
 const retrieveData = async (url = '') => {
-  const request = await fetch(url);
+  const req = await fetch(url);
   try {
     // Transform into JSON
-    const allData = await request.json();
-    return allData;
+    const reqData = await req.json();
+    return reqData;
   } catch (error) {
     console.log('error', error);
     // appropriately handle the error
   }
 };
 
-/* Function to POST data */
+////////////////////////////
+// Function to POST data  //
+////////////////////////////
 const postData = async (url = '', data = {}) => {
-  const response = await fetch(url, {
+  const res = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+    body: JSON.stringify(data)
   });
-
   try {
-    const newData = await response.json();
+    const newData = await res.json();
     return newData;
   } catch (error) {
     console.log('error', error);
   }
 };
 
-/* Update UI */
-const updateUI = async () => {
-  const request = await fetch(allDataURL);
+////////////////
+// Update POST//
+////////////////
+const updatePOST = async () => {
+  const reqPost = await fetch('/all');
   try {
-    const allData = await request.json();
+    const allData = await reqPost.json();
     const mostRecentRecord = allData[allData.length - 1];
-    document.getElementById('date').innerHTML = 'Date: ' + mostRecentRecord.date;
-    document.getElementById('temp').innerHTML = 'Temperature: ' + mostRecentRecord.temperature;
-    document.getElementById('content').innerHTML = 'Feelings: ' + mostRecentRecord.userResponse;
+    document.getElementById('date').innerHTML =
+      'Date: ' + mostRecentRecord.date;
+    document.getElementById('temp').innerHTML =
+      'Temperature: ' + mostRecentRecord.temperature + ' &#8457;';
+    document.getElementById('content').innerHTML =
+      'Feelings: ' + mostRecentRecord.userResponse;
   } catch (error) {
     console.log('error', error);
   }
