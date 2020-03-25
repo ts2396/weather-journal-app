@@ -86,7 +86,7 @@ let postData = async (url = '', data = {}) => {
     // console.log(newData);
     return newData;
   } catch (error) {
-    console.log('error', error);
+    console.log(error);
     // appropriately handle the error
   }
 };
@@ -104,6 +104,6 @@ let updateUI = async () => {
     document.getElementById('content').innerHTML =
       'Feelings: ' + recentEntry.userAction;
   } catch (error) {
-    console.log('error', error);
+    console.log(error);
   }
 };
