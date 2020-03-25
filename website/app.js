@@ -11,8 +11,7 @@ let newDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 ////////////////////////////////////////////
 // Personal API Key for OpenWeatherMap API//
 ////////////////////////////////////////////
-const baseURL =
-  'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 const apiKey = 'ce58fc8133b676ecc82cb35306506d86';
 
 ////////////////////////////////////////////////////////////////
