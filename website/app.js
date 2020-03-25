@@ -24,7 +24,7 @@ function performAction(e) {
   const feelText = document.getElementById('feelings').value;
   getApiData(baseURL, document.getElementById('zip').value, apiKey)
     .then(function (JTempData) {
-      postData('/add', {
+      postData('./add', {
         temperature: JTempData,
         date: newDate,
         feelings: feelText
@@ -33,9 +33,12 @@ function performAction(e) {
     })
 }
 
+
+
+
 /* Function to GET Web API Data*/
 const getApiData = async (baseURL, zip, apiKey) => {
-  const response = await fetch(baseURL + zip + apiKey);
+  const response = await fetch(baseURL + zip + "&units=imperial" + apiKey);
   try {
     const webData = await response.json();
     JTempData = webData.main.temp;

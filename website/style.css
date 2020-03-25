@@ -112,7 +112,8 @@ h3 {
   text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
     -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
   width: 100vw;
-  background-image: url('/website/images/thunderstorm-1768742_960_720.webp');
+  /*background-image: url('/website/images/thunderstorm-1768742_960_720.webp');
+  */
   background-attachment: fixed;
   background-position: bottom;
   background-repeat: no-repeat;
