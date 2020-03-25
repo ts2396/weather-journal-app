@@ -63,7 +63,7 @@ let retrieveData = async (url = '') => {
     const reqData = await req.json();
     return reqData;
   } catch (error) {
-    console.log('error', error);
+    console.log(error);
     // appropriately handle the error
   }
 };
